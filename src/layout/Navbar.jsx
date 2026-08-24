@@ -16,6 +16,7 @@ export default function Navbar() {
           <NavLink to="/login">Log in</NavLink>
         )}
       </nav>
+      <NavLink to="/explore">Explore</NavLink>
     </header>
   );
 }
