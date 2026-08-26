@@ -2,9 +2,9 @@ import { Route, Routes } from "react-router";
 import Layout from "./layout/Layout";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
-import Explore from "./explore";
-import Location from "./location";
-import Place from "./place";
+import Explore from "./explore/explore";
+import Location from "./explore/location";
+import Place from "./explore/place";
 
 export default function App() {
   return (

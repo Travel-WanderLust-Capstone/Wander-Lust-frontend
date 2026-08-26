@@ -21,8 +21,10 @@ export default function Explore() {
 
   return (
     <>
-      <h1>Explore!</h1>
-      <p>satisfy your wanderlust today!</p>
+      <div className="location-card">
+        <h1>Explore!</h1>
+        <p>satisfy your wanderlust today!</p>
+      </div>
       {locations.map((location) => (
         <div key={location.id} className="location-card">
           <Link to={`/explore/${location.id}`} key={location.id}>
