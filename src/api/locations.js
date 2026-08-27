@@ -5,7 +5,7 @@ export async function getLocations() {
   try {
     const response = await fetch(API_URL);
 
-    if (!response) {
+    if (!response.ok) {
       throw new Error("Failed to fetch locations");
     }
 
