@@ -1,17 +1,25 @@
 import TaskCard from "./TaskCard"; //importede from component i just created in TaskCard
 
-function TaskList({ tasks, users }) {
+//TaskList loops through tasks
+function TaskList({ tasks, users, onDeleteTask }) {
   //component expects array of tasks
 
-  return (
+  //Are there zero tasks? If yes, then return message
+  if (tasks.length === 0) {
     //if there are 0 items in tasks array then display message
-    <section>
-      {/* <h2>Assign Tasks</h2> */}
-
+    return <p className="loading-message">No tasks assigned</p>;
+  }
+  return (
+    <div className="task-list">
       {tasks.map((task) => (
-        <TaskCard key={task.id} task={task} users={users} />
+        <TaskCard
+          key={task.id}
+          task={task}
+          users={users}
+          onDeleteTask={onDeleteTask}
+        />
       ))}
-    </section>
+    </div>
   );
   //Go through every task in the array and create something for each one.
   //React creates a TaskCard for each object

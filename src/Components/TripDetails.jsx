@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"; //component remember info
 import { useParams } from "react-router";
 import { getTripById, addUserToTrip } from "../api/trips";
 // import { getUsers } from "../api/users";
-import { getTasksByTripId, createTask } from "../api/tasks";
+import { getTasksByTripId, createTask, deleteTask } from "../api/tasks";
 import TaskList from "./TaskList";
 
 function TripDetails() {
@@ -19,6 +19,22 @@ function TripDetails() {
   const [taskTitle, setTaskTitle] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [selectedUserId, setSelectedUserId] = useState("");
+
+  //DATE FORMAT
+  function formatDate(date) {
+    if (!date) return ""; //check if there's a date
+    //if not, return empty string
+
+    const [year, month, day] = date.split("T")[0].split("-");
+    //reference from ChatGpt to get specific setup for date
+    //.split("T") says:"Cut this string wherever you see the letter T."
+    //2026-08-27T05:00:00.000Z gets split into ["2026-08-27", "05:00:00.000Z"]
+    //the [0] means give the first part
+    //.split("-") means split year, month, and day and stores in the 3 above variables
+
+    //rearrange the date
+    return `${month}/${day}/${year}`;
+  }
 
   console.log("trip.users", trip?.users);
 
@@ -78,34 +94,65 @@ function TripDetails() {
     setSelectedUserId("");
   }
 
+  //HANDLE DELETE TASK
+  async function handleDeleteTask(taskId) {
+    await deleteTask(taskId);
+
+    const updatedTasks = await getTasksByTripId(id);
+
+    setTasks(updatedTasks || []);
+  }
+
   //LOADING trip message
   //If there isn't a trip yet, show "Loading trip..." until api responds.
   if (!trip) {
-    return <p>Loading Trip...</p>;
+    return <p className="loading-message">Loading Trip...</p>;
   }
 
   return (
-    <main>
-      <h1>Trip Details</h1>
-      <section>
-        <h1>{trip.name}</h1>
-        <p>Location: {trip.location}</p>
-        <p>Start Date: {trip.start_date}</p>
-        <p>End Date: {trip.end_date}</p>
-        <p>{trip.description}</p>
+    <main className="trip-details-page">
+      <h1 className="trip-details-heading">Trip Details</h1>
+
+      {/* TRIP INFORMATION */}
+      <section className="trip-details-card">
+        <h2>{trip.name}</h2>
+
+        <p className="trip-info">
+          <strong>Location:</strong> {trip.location}
+        </p>
+
+        <p className="trip-info">
+          <strong>Start Date:</strong> {formatDate(trip.start_date)}
+        </p>
+
+        <p className="trip-info">
+          <strong>End Date:</strong> {formatDate(trip.end_date)}
+        </p>
+
+        <p className="trip-info">{trip.description}</p>
       </section>
 
-      <section>
+      {/* TRAVELERS  */}
+
+      <section className="trip-section-card">
         <h2>Travelers</h2>
 
-        {trip.users?.map((user) => (
-          <p key={user.id}>{user.name}</p>
-        ))}
+        <div className="traveler-list">
+          {trip.users?.map((user) => (
+            <p className="traveler-name" key={user.id}>
+              {user.name}
+            </p>
+          ))}
+        </div>
+      </section>
 
-        <h3>Add Traveler</h3>
+      {/* ADD TRAVELER */}
 
-        <form onSubmit={handleAddTraveler}>
-          <label>
+      <section className="trip-section-card">
+        <h2>Add Traveler</h2>
+
+        <form className="trip-details-form" onSubmit={handleAddTraveler}>
+          <label className="form-group">
             Traveler
             <select
               value={userId}
@@ -118,24 +165,26 @@ function TripDetails() {
             </select>
           </label>
 
-          <label>
+          {/* <label>
             Message:
             <input
               type="text"
               value={message}
               onChange={(event) => setMessage(event.target.value)}
             />
-          </label>
+          </label> */}
 
           <button type="submit">Add Traveler</button>
         </form>
       </section>
 
-      <section>
+      {/* ASSIGN TASK */}
+
+      <section className="trip-section-card">
         <h2>Assign Task</h2>
 
-        <form onSubmit={handleCreateTask}>
-          <label>
+        <form className="trip-details-form" onSubmit={handleCreateTask}>
+          <label className="form-group">
             Task:
             <input
               type="text"
@@ -144,7 +193,7 @@ function TripDetails() {
             />
           </label>
 
-          <label>
+          <label className="form-group">
             Due Date:
             <input
               type="date"
@@ -153,7 +202,7 @@ function TripDetails() {
             />
           </label>
 
-          <label>
+          <label className="form-group">
             Assign To:
             <select
               value={selectedUserId}
@@ -173,9 +222,18 @@ function TripDetails() {
         </form>
       </section>
 
-      <TaskList tasks={tasks} users={trip.users || []} />
-      {/* tasks is prop name. {tasks} is state from details page.
+      {/* TASK LIST */}
+
+      <section className="task-section">
+        <h2>Tasks</h2>
+        <TaskList
+          tasks={tasks}
+          users={trip.users || []}
+          onDeleteTask={handleDeleteTask}
+        />
+        {/* tasks is prop name. {tasks} is state from details page.
       TaskList is array of tasks fetched */}
+      </section>
     </main>
   );
 }

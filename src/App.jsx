@@ -3,7 +3,7 @@ import TripForm from "./Components/TripForm";
 import TripDetails from "./Components/TripDetails";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
-import "./App.css";
+import "./app.css";
 
 export default function App() {
   return (
@@ -11,7 +11,6 @@ export default function App() {
     <main className="app">
       <header>
         <h1>Wanderlust Trip Planner</h1>
-        <p>Start planning your next adventure.</p>
 
         <nav>
           <Link to="/">Home</Link>

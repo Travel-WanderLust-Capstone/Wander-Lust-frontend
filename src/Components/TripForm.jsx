@@ -74,68 +74,76 @@ function TripForm() {
 
   //Actual Form
   return (
-    //come back and create the classNames CSS
-    <form onSubmit={handleSubmit} className="trip-form">
-      <h2>Create New Trip</h2>
-      <label>
-        Trip Name
-        <input
-          type="text"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-        />
-      </label>
+    <section className="trip-form-page">
+      <div className="trip-form-container">
+        <h2>Create New Trip</h2>
 
-      <label>
-        Location
-        <select
-          value={locationId}
-          onChange={(event) => setLocationId(event.target.value)}
-        >
-          <option value="">Select a location</option>
+        <form className="trip-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Trip Name</label>
 
-          {/* go through every location in my locations array and create an option
+            <input
+              type="text"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Location</label>
+
+            <select
+              value={locationId}
+              onChange={(event) => setLocationId(event.target.value)}
+            >
+              <option value="">Select a location</option>
+
+              {/* go through every location in my locations array and create an option
           ?: only run map() if location exists */}
-          {locations?.map((location) => (
-            // user sees name and react stores Id
-            <option key={location.id} value={location.id}>
-              {location.name}
-            </option>
-          ))}
-        </select>
-      </label>
+              {locations?.map((location) => (
+                // user sees name and react stores Id
+                <option key={location.id} value={location.id}>
+                  {location.name}
+                </option>
+              ))}
+            </select>
+          </div>
 
-      <label>
-        Start Date
-        <input
-          type="date"
-          value={startDate}
-          onChange={(event) => setStartDate(event.target.value)}
-        />
-      </label>
+          <div className="date-row">
+            <label>Start Date</label>
+            <input
+              type="date"
+              value={startDate}
+              onChange={(event) => setStartDate(event.target.value)}
+            />
+          </div>
 
-      <label>
-        End Date
-        <input
-          type="date"
-          value={endDate}
-          onChange={(event) => setEndDate(event.target.value)}
-        />
-      </label>
+          <div className="date-row">
+            <label>End Date</label>
+            <input
+              type="date"
+              value={endDate}
+              onChange={(event) => setEndDate(event.target.value)}
+            />
+          </div>
 
-      <label>
-        Description
-        <textarea
-          value={description}
-          onChange={(event) => setDescription(event.target.value)}
-        />
-      </label>
+          <div className="form-group">
+            <label>Description</label>
+            <textarea
+              value={description}
+              onChange={(event) => setDescription(event.target.value)}
+            />
+          </div>
 
-      <button type="submit">Create Trip</button>
-      <button type="button" onClick={handleCancel}>
-        Cancel Trip
-      </button>
-    </form>
+          <div className="trip-form-buttons">
+            <button type="submit">Create Trip</button>
+            <button type="button" onClick={handleCancel}>
+              Cancel Trip
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
   );
 }
 export default TripForm;
