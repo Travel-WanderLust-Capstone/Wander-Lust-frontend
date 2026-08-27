@@ -1,5 +1,5 @@
 const BASE_URL = "http://localhost:3000";
-const API_URL = `${BASE_URL}/locations`;
+const API_URL = `${BASE_URL}/location`;
 
 export async function getLocations() {
   try {
