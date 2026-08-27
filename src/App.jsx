@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router";
+import TripForm from "./Components/TripForm";
 import Layout from "./layout/Layout";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
@@ -10,6 +11,7 @@ export default function App() {
         <Route index element={<p>Home page</p>} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/trips/new" element={<TripForm />} />
       </Route>
     </Routes>
   );
