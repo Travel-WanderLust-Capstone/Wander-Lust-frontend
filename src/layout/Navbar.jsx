@@ -7,7 +7,7 @@ export default function Navbar() {
   return (
     <header id="navbar">
       <NavLink id="brand" to="/">
-        <h2>Wander Lust</h2>
+        <h1>Wander Lust</h1>
       </NavLink>
       <nav>
         {token ? (

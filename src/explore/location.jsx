@@ -14,7 +14,6 @@ export default function Location() {
       const response = await fetch(`${BASE}/${id}`);
       const result = await response.json();
       setSelectedLocation(result);
-      //console.log("RESULT", result);
     } catch (e) {
       console.error(e);
     }
@@ -22,11 +21,9 @@ export default function Location() {
   useEffect(() => {
     getLocationDetails();
   }, []);
-  //console.log("SELECTED LOCATION", selectedLocation);
   if (!selectedLocation) {
     return <p>Loading...</p>;
   }
-  //console.log("PLACES:", selectedLocation.places);
   const location = selectedLocation.location[0];
 
   const filteredPlaces =
@@ -34,18 +31,19 @@ export default function Location() {
       ? selectedLocation.places
       : selectedLocation.places.filter((place) => place.type === filter);
 
-  //console.log("FILTERED PLACES", filteredPlaces);
   return (
     <>
       <div className="location-layout">
         <div className="location-content">
           <div className="description-card">
-            <h1>{location.name}</h1>
+            <h1>{location.name} ~</h1>
             <p>{location.description}</p>
             <button onClick={() => navigate(-1)}>Back to Explore</button>
             <Link to={`/`}>Plan a Trip today!</Link>
           </div>
-          <h2>Attractions</h2>
+          <div className="title-card">
+            <h2>~ Attractions ~</h2>
+          </div>
           <select
             value={filter}
             onChange={(e) => {

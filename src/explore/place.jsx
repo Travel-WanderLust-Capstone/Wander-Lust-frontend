@@ -15,7 +15,6 @@ export default function Place() {
       const response = await fetch(`${BASE}/${id}/${placeId}`);
       const result = await response.json();
       setSelectedPlace(result);
-      //console.log("RESULT", result);
     } catch (e) {
       console.error(e);
     }
@@ -26,7 +25,6 @@ export default function Place() {
       const response = await fetch(`${BASE}/${id}`);
       const result = await response.json();
       setLocation(result.location[0]);
-      //console.log("RESULT", result);
     } catch (e) {
       console.error(e);
     }
@@ -36,12 +34,12 @@ export default function Place() {
     getPlaceDetails();
     getLocationDetails();
   }, [id, placeId]);
-  //console.log("SELECTED PLACE", selectedPlace);
+
   if (!selectedPlace || !location) {
     return <p>Loading...</p>;
   }
   const place = selectedPlace[0];
-  //console.log("PLACE", place);
+
   return (
     <>
       <div className="location-layout">
