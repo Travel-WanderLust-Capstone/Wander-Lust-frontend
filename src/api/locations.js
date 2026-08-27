@@ -1,11 +1,11 @@
 const BASE_URL = "http://localhost:3000";
-const API_URL = `${BASE_URL}/locations`;
+const API_URL = `${BASE_URL}/location`;
 
 export async function getLocations() {
   try {
     const response = await fetch(API_URL);
 
-    if (!response) {
+    if (!response.ok) {
       throw new Error("Failed to fetch locations");
     }
 
