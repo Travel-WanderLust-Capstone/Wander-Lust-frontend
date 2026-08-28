@@ -42,6 +42,11 @@ export async function createTrip(tripData, token) {
     //fetch cant send normal javascript obj as json
     //json.stringify converts javascript into json string
 
+    if (!response.ok) {
+      const error = await response.text();
+      throw new Error(error);
+    }
+
     //convert backend response
     const result = await response.json();
 

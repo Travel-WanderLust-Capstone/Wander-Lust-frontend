@@ -57,15 +57,18 @@ function TripForm() {
       description: description,
     };
 
-    console.log("Trip being created", tripData);
-
     //give new token to createTrip
     // Send trip data AND logged-in user's token
     const newTrip = await createTrip(tripData, token);
     //create new trip and save the trip returned by backend into newTrip
     console.log("Created Trip", newTrip);
 
-    navigate(`/trips/${newTrip.id}`);
+    if (newTrip?.id) {
+      navigate(`/trips/${newTrip.id}`);
+    } else {
+      console.error("Trip was not created.");
+    }
+
     //Go to the Trip Details page for the trip we just created
   }
 

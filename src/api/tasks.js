@@ -29,10 +29,15 @@ export async function createTask(tripId, title, dueDate, userId) {
 }
 
 //GET ALL TASKS belonging to one trip
-export async function getTasksByTripId(tripId) {
+//pass token
+export async function getTasksByTripId(tripId, token) {
   try {
     //contacts backend
-    const response = await fetch(`${BASE_URL}/trips/${tripId}/tasks`);
+    const response = await fetch(`${BASE_URL}/trips/${tripId}/tasks`, {
+      headers: {
+        Authorizations: `Bearer ${token}`,
+      },
+    });
 
     //convert response to javascript
     const tasks = await response.json();
