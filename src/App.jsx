@@ -4,6 +4,9 @@ import TripDetails from "./Components/TripDetails";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 import "./app.css";
+import Explore from "./explore/explore";
+import Location from "./explore/location";
+import Place from "./explore/place";
 
 export default function App() {
   return (
@@ -26,6 +29,12 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/trips/new" element={<TripForm />} />
         <Route path="/trips/:id" element={<TripDetails />} />
+
+        <Route path="/explore" element={<Explore />} />
+        <Route path="/explore/:id" element={<Location />} />
+        <Route path="/explore/:id/activities" element={<Location />} />
+        <Route path="/explore/:id/lodging" element={<Location />} />
+        <Route path="/explore/:id/:placeId" element={<Place />} />
       </Routes>
     </main>
   );
