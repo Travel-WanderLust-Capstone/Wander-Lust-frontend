@@ -16,7 +16,8 @@ export async function getTrips() {
   }
 }
 
-export async function createTrip(tripData) {
+//pass the token
+export async function createTrip(tripData, token) {
   //tripData is info we give function
   //object containing the information needed to create the trip
 
@@ -29,9 +30,11 @@ export async function createTrip(tripData) {
       headers: {
         //extra information about your request.
         //tell your backend what type of data you're sending.
+        //tells backend sending JSON
+        //trip starts as javascript object. API request sends it as JSON.
         "Content-Type": "application/json",
-      }, //tells backend sending JSON
-      //trip starts as javascript object. API request sends it as JSON.
+        Authorization: `Bearer ${token}`,
+      },
 
       //put trip info in request
       body: JSON.stringify(tripData),
@@ -48,9 +51,15 @@ export async function createTrip(tripData) {
   } //if something goes wrong while creating trip throw error
 }
 
-export async function getTripById(id) {
+//TRIP DETAILS
+//gets token from authentication and calls
+export async function getTripById(id, token) {
   try {
-    const response = await fetch(`${API_URL}/${id}`);
+    const response = await fetch(`${API_URL}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     const trip = await response.json(); //backend json response to javascripit
 

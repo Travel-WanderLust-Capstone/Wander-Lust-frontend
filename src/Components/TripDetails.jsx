@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react"; //component remember info
 import { useParams } from "react-router";
 import { getTripById, addUserToTrip } from "../api/trips";
-// import { getUsers } from "../api/users";
 import { getTasksByTripId, createTask, deleteTask } from "../api/tasks";
+import { useAuth } from "../auth/AuthContext";
 import TaskList from "./TaskList";
 
 function TripDetails() {
   //Get the id out of the URL and store it in a variable called id
   const { id } = useParams();
   console.log(id);
+
+  // Get logged-in user's token from AuthContext
+  const { token } = useAuth();
 
   //STATE
   const [trip, setTrip] = useState(null); //store trip. returned by backend. null=haveent loaded trip yet
@@ -42,9 +45,11 @@ function TripDetails() {
   //LOAD trip and taks when page opens
   useEffect(() => {
     async function loadTripDetails() {
-      const tripData = await getTripById(id); //calls frontend API function
+      // Send trip ID AND token
+      const tripData = await getTripById(id, token); //calls frontend API function
 
-      const taskData = await getTasksByTripId(id);
+      // Send trip ID AND token
+      const taskData = await getTasksByTripId(id, token);
 
       //   const userData = await getUsers();
 
@@ -56,8 +61,11 @@ function TripDetails() {
       //   setAllUsers(userData || []);
     }
 
-    loadTripDetails();
-  }, [id]); //Run this effect when the component loads and again if tripId changes.
+    //Only try to load protected Trip Details data once the logged-in user's token exists
+    if (token) {
+      loadTripDetails();
+    }
+  }, [id, token]); //Run this effect when the component loads and again if tripId changes.
 
   console.log("Trip:", trip);
   console.group("Tasks:", tasks);

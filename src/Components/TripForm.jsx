@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"; //component remember info
 import { useNavigate } from "react-router";
 import { createTrip } from "../api/trips";
 import { getLocations } from "../api/locations";
+import { useAuth } from "../auth/AuthContext";
 
 function TripForm() {
   //TripForm loads
@@ -17,7 +18,11 @@ function TripForm() {
   const [endDate, setEndDate] = useState("");
   const [description, setDescription] = useState("");
   const [locations, setLocations] = useState([]);
+
   const navigate = useNavigate(); //lets javascript send user to another page
+
+  // Get logged-in user's token from AuthContext
+  const { token } = useAuth();
 
   //USE EFFECT
   //runs to load locations when page opens
@@ -54,7 +59,9 @@ function TripForm() {
 
     console.log("Trip being created", tripData);
 
-    const newTrip = await createTrip(tripData);
+    //give new token to createTrip
+    // Send trip data AND logged-in user's token
+    const newTrip = await createTrip(tripData, token);
     //create new trip and save the trip returned by backend into newTrip
     console.log("Created Trip", newTrip);
 
