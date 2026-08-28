@@ -3,7 +3,6 @@ import TripForm from "./Components/TripForm";
 import TripDetails from "./Components/TripDetails";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
-import "./app.css";
 import Explore from "./explore/explore";
 import Location from "./explore/location";
 import Place from "./explore/place";
