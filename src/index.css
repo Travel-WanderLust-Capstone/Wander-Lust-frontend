@@ -1,0 +1,429 @@
+body {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
+    url("./assets/topography\ map2.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: 0;
+}
+button:hover {
+  filter: brightness(0.9);
+  font-style: italic;
+}
+@media (width >= 600px) {
+  .location-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    min-height: calc(100vh - 80px);
+  }
+
+  .location-content {
+    padding: 2rem;
+  }
+}
+a {
+  color: black;
+  text-decoration: none;
+}
+a:hover {
+  color: brown;
+  text-decoration: underline;
+  font-style: italic;
+}
+
+button {
+  background-color: rgb(38, 155, 155);
+  color: white;
+  font-size: 1rem;
+  padding: 0.5rem;
+  margin: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+header {
+  grid-column: 1 / 4;
+  background-color: rgb(38, 155, 155, 0.8);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem;
+  gap: 1.5rem;
+  a {
+    color: white;
+    text-decoration: none;
+  }
+  a:hover {
+    color: rgba(245, 240, 225);
+    text-decoration: underline;
+  }
+}
+
+.location-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: 0.15rem;
+}
+
+.location-card {
+  grid-column: 1 / 2;
+  background-color: rgba(245, 240, 225, 0.7);
+  font-size: 1.25rem;
+  margin: 1rem;
+  padding: 2rem;
+  border-radius: 5px;
+}
+.title-card {
+  color: white;
+  margin: 1rem;
+  background-color: rgb(38, 155, 155, 0.8);
+  text-align: center;
+  border-radius: 5px;
+}
+.place-card {
+  background-color: rgba(245, 240, 225, 0.7);
+  font-size: 1.25rem;
+  margin: 1rem;
+  padding: 2rem;
+  border-radius: 5px;
+}
+
+.description-card {
+  background-color: rgba(245, 240, 225, 0.7);
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+/* ========   CASEY - CREATE TRIP + TRIP DETAILS =========     */
+
+/* YOUR PAGE BACKGROUND ONLY */
+
+.trip-form-page,
+.trip-details-page {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)),
+    url("./assets/cities.jpeg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  min-height: 100vh;
+}
+
+/* 
+   CREATE NEW TRIP
+ */
+
+.trip-form-page {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 1rem;
+}
+
+.trip-form-container {
+  width: 100%;
+  max-width: 700px;
+
+  background-color: rgba(245, 240, 225, 0.822);
+
+  padding: 2rem;
+  border-radius: 5px;
+}
+
+.trip-form-container h2 {
+  text-align: center;
+
+  color: rgb(38, 155, 155);
+
+  margin-top: 0;
+  margin-bottom: 2rem;
+
+  font-size: 4rem;
+  font-weight: bold;
+
+  text-shadow:
+    2px 2px 4px rgba(0, 0, 0, 0.7),
+    0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.trip-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 0.75rem;
+
+  font-size: 1rem;
+
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.date-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.date-row .form-group {
+  flex: 1;
+}
+
+.trip-form-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+/*
+   TRIP DETAILS
+ */
+
+.trip-details-page {
+  width: 100%;
+
+  margin: 0 auto;
+
+  padding: 3rem 1rem;
+}
+
+.trip-details-heading {
+  text-align: center;
+
+  color: rgb(38, 155, 155);
+
+  margin-bottom: 2rem;
+
+  font-size: 4rem;
+  font-weight: bold;
+
+  text-shadow:
+    2px 2px 4px rgba(0, 0, 0, 0.7),
+    0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* SAME CENTERED WIDTH FOR YOUR DETAILS SECTIONS */
+
+.trip-details-card,
+.trip-section-card,
+.task-section {
+  width: 85%;
+  max-width: 1100px;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* MAIN TRIP CARD */
+
+.trip-details-card {
+  background-color: rgba(245, 240, 225, 0.9);
+
+  padding: 2rem;
+  margin-bottom: 2rem;
+
+  border-radius: 5px;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.trip-details-card h2 {
+  color: rgb(38, 155, 155);
+  margin-top: 0;
+}
+
+.trip-details-card p {
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.trip-info {
+  margin-bottom: 0.75rem;
+}
+
+.trip-info strong {
+  color: rgb(38, 155, 155);
+}
+
+/* GENERAL DETAILS CARDS */
+
+.trip-section-card {
+  background-color: rgba(245, 240, 225, 0.9);
+
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+
+  border-radius: 5px;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.trip-section-card h2 {
+  color: rgb(38, 155, 155);
+  margin-top: 0;
+}
+
+/* 
+   TRAVELERS
+ */
+
+.traveler-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.traveler-name {
+  background-color: white;
+
+  padding: 0.6rem 1rem;
+
+  border-radius: 5px;
+  border-left: 4px solid rgb(38, 155, 155);
+
+  margin: 0;
+}
+
+/* 
+   ADD TRAVELER / ASSIGN TASK FORMS
+ */
+
+.trip-details-form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+
+  width: 100%;
+}
+
+.trip-details-form .form-group {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.5rem;
+
+  font-weight: bold;
+}
+
+.trip-details-form input,
+.trip-details-form select {
+  width: 100%;
+
+  padding: 0.75rem;
+
+  font-size: 1rem;
+
+  background-color: rgba(241, 241, 238, 0.9);
+
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+
+.trip-details-form input:focus,
+.trip-details-form select:focus {
+  outline: 2px solid rgb(38, 155, 155);
+  border-color: rgb(38, 155, 155);
+}
+
+/* 
+   TASKS
+ */
+
+.task-section {
+  background-color: rgba(245, 240, 225, 0.9);
+
+  padding: 2rem;
+
+  border-radius: 5px;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.task-section h2 {
+  color: rgb(38, 155, 155);
+  margin-top: 0;
+}
+
+.task-list {
+  display: grid;
+
+  gap: 1rem;
+
+  margin-top: 1rem;
+
+  width: 100%;
+}
+
+.task-card {
+  width: 100%;
+
+  background-color: rgba(241, 241, 238, 0.9);
+
+  padding: 1.25rem;
+
+  border-radius: 5px;
+  border-left: 5px solid rgb(38, 155, 155);
+}
+
+.task-card h3 {
+  color: rgb(38, 155, 155);
+  margin-top: 0;
+}
+
+.task-card p {
+  margin: 0.5rem 0;
+}
+
+.task-warning {
+  background-color: #f6cabd;
+  color: #7a5c00;
+
+  padding: 0.75rem;
+
+  margin-top: 1rem;
+
+  border-radius: 5px;
+
+  font-weight: bold;
+}
+
+/* 
+   LOADING / EMPTY MESSAGE
+*/
+
+.loading-message {
+  text-align: center;
+
+  margin-top: 3rem;
+
+  font-size: 1.2rem;
+  font-weight: bold;
+
+  color: rgb(38, 155, 155);
+}
