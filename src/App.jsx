@@ -4,6 +4,7 @@ import TripForm from "./Components/TripForm";
 import TripDetails from "./Components/TripDetails";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
+import ChatRoom from "./ChatRoom";
 import Explore from "./explore/explore";
 import Location from "./explore/location";
 import Place from "./explore/place";
@@ -16,6 +17,7 @@ export default function App() {
 
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/trips/:tripId/chat" element={<ChatRoom />} />
 
         <Route path="/trips/new" element={<TripForm />} />
         <Route path="/trips/:id" element={<TripDetails />} />
