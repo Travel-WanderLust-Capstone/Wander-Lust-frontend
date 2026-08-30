@@ -46,7 +46,7 @@ export default function Place() {
         <div className="description-card">
           <h1>{place.name}</h1>
           <p>{place.description}</p>
-          <Link to={`/`}>Look interesting? Add this to a trip!</Link>
+          <Link to={`/trips/:id`}>Look interesting? Add this to a trip!</Link>
           <button onClick={() => navigate(-1)}>Back to Search</button>
         </div>
         <img

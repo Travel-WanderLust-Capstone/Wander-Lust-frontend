@@ -23,6 +23,7 @@ export default function Register() {
 
   return (
     <>
+      <div className="description-card"></div>
       <h1>Register for an account</h1>
       <form action={onRegister}>
         <label>

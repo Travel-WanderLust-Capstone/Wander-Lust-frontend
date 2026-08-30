@@ -39,7 +39,7 @@ export default function Location() {
             <h1>{location.name} ~</h1>
             <p>{location.description}</p>
             <button onClick={() => navigate(-1)}>Back to Explore</button>
-            <Link to={`/`}>Plan a Trip today!</Link>
+            <Link to={`/trips/new`}>Plan a Trip today!</Link>
           </div>
           <div className="title-card">
             <h2>~ Attractions ~</h2>

@@ -14,7 +14,9 @@ export default function ChatRoom() {
   const [imageUrl, setImageUrl] = useState("");
 
   async function loadMessages() {
-    const response = await fetch(`${API}/trips/${tripId}/chat`, { cache: "no-store" });
+    const response = await fetch(`${API}/trips/${tripId}/chat`, {
+      cache: "no-store",
+    });
     const data = await response.json();
     setMessages(data);
   }
@@ -49,7 +51,9 @@ export default function ChatRoom() {
 
   return (
     <div style={{ maxWidth: 600, margin: "1rem auto", padding: "0 1rem" }}>
-      <h2 className="title-card" style={{ padding: "1rem" }}>Group Chat</h2>
+      <h2 className="title-card" style={{ padding: "1rem" }}>
+        Group Chat
+      </h2>
 
       <div
         style={{
@@ -60,7 +64,9 @@ export default function ChatRoom() {
           marginBottom: "1rem",
         }}
       >
-        {messages.length === 0 && <p>No messages yet — say hi! 👋</p>}
+        {messages.length === 0 && (
+          <p className="description-card">No messages yet — say hi! 👋</p>
+        )}
         {messages.map((m) => (
           <div
             key={m.id}
@@ -80,7 +86,12 @@ export default function ChatRoom() {
               <img
                 src={m.media_url}
                 alt=""
-                style={{ maxWidth: 240, display: "block", marginTop: "0.5rem", borderRadius: 5 }}
+                style={{
+                  maxWidth: 240,
+                  display: "block",
+                  marginTop: "0.5rem",
+                  borderRadius: 5,
+                }}
               />
             )}
           </div>
@@ -95,13 +106,20 @@ export default function ChatRoom() {
             placeholder="Type a message…"
             style={{ ...inputStyle, flex: 1 }}
           />
-          <button type="submit" style={{ margin: 0 }}>Send</button>
+          <button type="submit" style={{ margin: 0 }}>
+            Send
+          </button>
         </div>
         <input
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
           placeholder="Paste an image link (optional)…"
-          style={{ ...inputStyle, width: "100%", marginTop: "0.5rem", boxSizing: "border-box" }}
+          style={{
+            ...inputStyle,
+            width: "100%",
+            marginTop: "0.5rem",
+            boxSizing: "border-box",
+          }}
         />
       </form>
     </div>
