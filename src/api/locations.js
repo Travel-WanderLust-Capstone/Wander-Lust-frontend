@@ -1,9 +1,9 @@
 const BASE_URL = import.meta.env.VITE_API_URL;
-const API_URL = `${BASE_URL}/location`;
+
 
 export async function getLocations() {
   try {
-    const response = await fetch(API_URL);
+    const response = await fetch(`${BASE_URL}/locations`);
 
     if (!response.ok) {
       throw new Error("Failed to fetch locations");
