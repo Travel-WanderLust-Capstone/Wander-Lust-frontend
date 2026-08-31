@@ -133,29 +133,4 @@ export async function addUserToTrip(tripId, userId, message, token) {
   } catch (error) {
     console.error("There was an error adding traveler", error);
 
-    //Delete trip
-export async function deleteTrip(tripId, token) {
-  const response = await fetch(`${BASE_URL}/trips/${tripId}`, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error("Failed to delete trip");
-  }
-
-  return response.json();
-}
-
-
-
-
-
-
-        
-
-    throw error;
-  }
-}
+ 
