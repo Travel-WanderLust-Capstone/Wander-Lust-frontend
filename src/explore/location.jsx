@@ -12,6 +12,10 @@ export default function Location() {
   async function getLocationDetails() {
     try {
       const response = await fetch(`${BASE}/explore/${id}`);
+
+      if (!response.ok) {
+        throw new Error(`Failed to get location: ${response.status}`);
+      }
       const result = await response.json();
       setSelectedLocation(result);
     } catch (e) {
@@ -20,7 +24,7 @@ export default function Location() {
   }
   useEffect(() => {
     getLocationDetails();
-  }, []);
+  }, [id]);
   if (!selectedLocation) {
     return <p>Loading...</p>;
   }
