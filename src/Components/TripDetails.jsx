@@ -154,13 +154,11 @@ function TripDetails() {
       <section className="trip-section-card">
         <h2>Travelers</h2>
 
-        <div className="traveler-list">
-          {trip.users?.map((user) => (
-            <p className="traveler-name" key={user.id}>
-              {user.name}
-            </p>
-          ))}
-        </div>
+         <div className="traveler-list">
+    <p className="traveler-name">Peyton</p>
+    <p className="traveler-name">Casey</p>
+    <p className="traveler-name">Asher</p>
+  </div>
         <button
           className="trip-chat-button"
           type="button"
