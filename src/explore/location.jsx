@@ -11,7 +11,7 @@ export default function Location() {
 
   async function getLocationDetails() {
     try {
-      const response = await fetch(`${BASE}/${id}`);
+      const response = await fetch(`${BASE}/locations/${id}`);
       const result = await response.json();
       setSelectedLocation(result);
     } catch (e) {
