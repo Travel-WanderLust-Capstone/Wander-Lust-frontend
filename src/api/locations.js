@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://wander-lust-oexs.onrender.com";
 const API_URL = `${BASE_URL}/location`;
 
 export async function getLocations() {
