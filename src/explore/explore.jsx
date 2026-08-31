@@ -7,6 +7,10 @@ export default function Explore() {
   async function getLocations() {
     try {
       const response = await fetch(API);
+
+      console.log("API URL:", API);
+console.log("STATUS:", response.status);
+console.log("RESPONSE URL:", response.url);
       const result = await response.json();
       setLocations(result);
     } catch (e) {
