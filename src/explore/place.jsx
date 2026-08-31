@@ -14,6 +14,7 @@ export default function Place() {
     try {
       const response = await fetch(`${BASE}/explore/${id}/${placeId}`);
       const result = await response.json();
+      console.log("PLACE RESULT:", result);
       setSelectedPlace(result);
     } catch (e) {
       console.error(e);
