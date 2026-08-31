@@ -11,6 +11,8 @@ export default function Location() {
 
   async function getLocationDetails() {
     try {
+      console.log("LOCATION ID:", id);
+    console.log("FETCHING:", `${BASE}/explore/${id}`);
       const response = await fetch(`${BASE}/explore/${id}`);
 
       if (!response.ok) {
