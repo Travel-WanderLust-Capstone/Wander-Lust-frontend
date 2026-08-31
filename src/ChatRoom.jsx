@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useAuth } from "./auth/AuthContext";
-import dinner from "./assets/dinner.jpg";
+
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -138,8 +138,8 @@ async function handleSend(e) {
             Send
           </button>
         </div>
-        <button
-          {/* value={imageUrl}
+        <input
+          value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
           placeholder="Paste an image link (optional)…"
           style={{
@@ -147,14 +147,11 @@ async function handleSend(e) {
             width: "100%",
             marginTop: "0.5rem",
             boxSizing: "border-box",
-          }} */}
+          }}
+          
         
-  type="button"
-  onClick={() => setImageUrl(dinner)}
-          style={{ marginTop: "0.5rem" }}
->
-  Add Trip Photo 📸
-</button>
+  
+
         />
       </form>
     </div>
