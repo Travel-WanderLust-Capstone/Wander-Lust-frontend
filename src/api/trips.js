@@ -132,5 +132,6 @@ export async function addUserToTrip(tripId, userId, message, token) {
     return result;
   } catch (error) {
     console.error("There was an error adding traveler", error);
-
+  }
+}
  
