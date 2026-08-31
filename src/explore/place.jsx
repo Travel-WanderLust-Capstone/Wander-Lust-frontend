@@ -39,7 +39,9 @@ export default function Place() {
     return <p>Loading...</p>;
   }
   const place = selectedPlace[0];
-
+console.log("PLACE ID:", placeId);
+console.log("PLACE FETCH:", `${BASE}/explore/${id}/${placeId}`);
+  console.log("LOCATION FETCH:", `${BASE}/explore/${id}`);
   return (
     <>
       <div className="location-layout">
