@@ -183,9 +183,9 @@ function TripDetails() {
   onChange={(event) => setUserId(event.target.value)}
 >
   <option value="">Select a traveler</option>
-  <option value="1">Casey</option>
-  <option value="2">Peyton</option>
-  <option value="3">Asher</option>
+  <option value="1">Kylan Gentry</option>
+  <option value="2">Amelie Griffith</option>
+  <option value="3">Lucien Lee</option>
 </select>
           </label>
 
