@@ -4,8 +4,7 @@ import { useParams, useNavigate, Link } from "react-router";
 const BASE = import.meta.env.VITE_API_URL;
 
 export default function Place() {
-  const { id } = useParams();
-  const { placeId } = useParams();
+  const { id, placeId } = useParams();
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [location, setLocation] = useState(null);
   const navigate = useNavigate();
@@ -25,7 +24,7 @@ export default function Place() {
     try {
       const response = await fetch(`${BASE}/explore/${id}`);
       const result = await response.json();
-      setLocation(result.location);
+      setLocation(result.location[0]);
     } catch (e) {
       console.error(e);
     }
@@ -39,7 +38,7 @@ export default function Place() {
   if (!selectedPlace || !location) {
     return <p>Loading...</p>;
   }
-  const place = selectedPlace;
+  const place = selectedPlace[0];
 
   return (
     <>
