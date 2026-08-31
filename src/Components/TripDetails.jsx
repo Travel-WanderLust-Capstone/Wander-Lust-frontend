@@ -155,10 +155,12 @@ function TripDetails() {
         <h2>Travelers</h2>
 
          <div className="traveler-list">
-    <p className="traveler-name">Peyton</p>
-    <p className="traveler-name">Casey</p>
-    <p className="traveler-name">Asher</p>
-  </div>
+  {trip.users?.map((user) => (
+    <p className="traveler-name" key={user.id}>
+      {user.name}
+    </p>
+  ))}
+</div>
         <button
           className="trip-chat-button"
           type="button"
