@@ -12,7 +12,7 @@ export default function Place() {
 
   async function getPlaceDetails() {
     try {
-      const response = await fetch(`${BASE}/${id}/${placeId}`);
+      const response = await fetch(`${BASE}/locations/${id}/${placeId}`);
       const result = await response.json();
       setSelectedPlace(result);
     } catch (e) {
