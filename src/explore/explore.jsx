@@ -6,7 +6,7 @@ export default function Explore() {
   const [locations, setLocations] = useState([]);
   async function getLocations() {
     try {
-      const response = await fetch(`${API}/locations);
+      const response = await fetch(`${API}/locations`);
 
       console.log("API URL:", API);
 console.log("STATUS:", response.status);
