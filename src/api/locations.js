@@ -3,7 +3,7 @@ console.log("BASE URL:", BASE_URL);
 
 export async function getLocations() {
   try {
-    const response = await fetch(`${BASE_URL}/locations`);
+    const response = await fetch(`${BASE_URL}/location`);
 
     if (!response.ok) {
       throw new Error("Failed to fetch locations");
