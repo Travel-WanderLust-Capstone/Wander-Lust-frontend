@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router";
-const API = "http://localhost:3000/explore/";
+const API = "https://wander-lust-oexs.onrender.com";
 
 export default function Explore() {
   const [locations, setLocations] = useState([]);
