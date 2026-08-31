@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router";
 
-const BASE = "https://wander-lust-oexs.onrender.com";
+const BASE = import.meta.env.VITE_API_URL;
 
 export default function Place() {
   const { id } = useParams();
