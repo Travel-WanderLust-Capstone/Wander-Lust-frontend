@@ -7,6 +7,7 @@ import Register from "./auth/Register";
 import ChatRoom from "./ChatRoom";
 import Explore from "./explore/explore";
 import Location from "./explore/location";
+import locationsRouter from "#api/locations";
 import Place from "./explore/place";
 import MyTrips from "./Components/MyTrips";
 import ProtectedRoute from "./auth/ProtectedRoute";
