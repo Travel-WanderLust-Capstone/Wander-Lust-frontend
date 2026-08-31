@@ -187,7 +187,7 @@ function TripDetails() {
               {allUsers.map((user) => (
   <option key={user.id} value={user.id}>
     {user.name}
-  </option>
+  </option> ))}
             </select>
           </label>
 
