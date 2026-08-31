@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useAuth } from "./auth/AuthContext";
+import dinner from "./assets/dinner.jpg";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -36,7 +37,7 @@ export default function ChatRoom() {
 async function handleSend(e) {
   e.preventDefault();
 
-  if (!text.trim()) return;
+  if (!text.trim() && !imageUrl) return;
 
   const headers = {
     "Content-Type": "application/json",
@@ -138,7 +139,7 @@ async function handleSend(e) {
           </button>
         </div>
         <input
-          value={imageUrl}
+          {/* value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
           placeholder="Paste an image link (optional)…"
           style={{
@@ -146,7 +147,13 @@ async function handleSend(e) {
             width: "100%",
             marginTop: "0.5rem",
             boxSizing: "border-box",
-          }}
+          }} */}
+        <button
+  type="button"
+  onClick={() => setImageUrl(dinner)}
+>
+  Add Trip Photo 📸
+</button>
         />
       </form>
     </div>
