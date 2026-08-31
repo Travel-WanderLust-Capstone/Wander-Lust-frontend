@@ -19,6 +19,7 @@ export default function Location() {
         throw new Error(`Failed to get location: ${response.status}`);
       }
       const result = await response.json();
+      console.log("LOCATION RESULT", result)
       setSelectedLocation(result);
     } catch (e) {
       console.error(e);
@@ -30,7 +31,7 @@ export default function Location() {
   if (!selectedLocation) {
     return <p>Loading...</p>;
   }
-  const location = selectedLocation.location[0];
+  const location = selectedLocation.location;
 
   const filteredPlaces =
     filter === "all"
