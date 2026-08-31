@@ -14,33 +14,60 @@ export default function ChatRoom() {
   const [imageUrl, setImageUrl] = useState("");
 
   async function loadMessages() {
+  try {
     const response = await fetch(`${BASE_URL}/trips/${tripId}/chat`, {
       cache: "no-store",
     });
+
+    if (!response.ok) {
+      throw new Error(`Failed to load messages: ${response.status}`);
+    }
+
     const data = await response.json();
     setMessages(data);
+  } catch (error) {
+    console.error("Error loading messages:", error);
+  }
+}
+  useEffect(() => {
+  loadMessages();
+}, [tripId]);
+
+async function handleSend(e) {
+  e.preventDefault();
+
+  if (!text.trim()) return;
+
+  const headers = {
+    "Content-Type": "application/json",
+  };
+
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
   }
 
-  useEffect(() => {
-    loadMessages();
-  }, [tripId]);
-
-  async function handleSend(e) {
-    e.preventDefault();
-    if (!text.trim()) return;
-
-    const headers = { "Content-Type": "application/json" };
-    if (token) headers.Authorization = `Bearer ${token}`;
-
-    await fetch(`${BASE_URL}/trips/${tripId}/chat`, {
+  try {
+    const response = await fetch(`${BASE_URL}/trips/${tripId}/chat`, {
       method: "POST",
       headers,
-      body: JSON.stringify({ body: text, mediaUrl: imageUrl }),
+      body: JSON.stringify({
+        body: text,
+        mediaUrl: imageUrl,
+      }),
     });
+
+    if (!response.ok) {
+      throw new Error(`Failed to send message: ${response.status}`);
+    }
+
     setText("");
     setImageUrl("");
-    loadMessages();
+
+    await loadMessages();
+  } catch (error) {
+    console.error("Error sending message:", error);
   }
+}
 
   const inputStyle = {
     padding: "0.5rem",
