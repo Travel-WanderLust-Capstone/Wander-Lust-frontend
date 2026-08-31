@@ -16,6 +16,31 @@ export async function getTrips() {
   }
 }
 
+//GET MY TRIPS
+export async function getMyTrips(token) {
+  try {
+    const response = await fetch(`${API_URL}/mine`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      const error = await response.text();
+
+      throw new Error(error);
+    }
+
+    const trips = await response.json();
+
+    return trips;
+  } catch (error) {
+    console.error("There was an error getting your trips.", error);
+
+    throw error;
+  }
+}
+
 //pass the token
 export async function createTrip(tripData, token) {
   //tripData is info we give function
@@ -66,31 +91,48 @@ export async function getTripById(id, token) {
       },
     });
 
-    const trip = await response.json(); //backend json response to javascripit
+    if (!response.ok) {
+      const error = await response.text();
+      throw new Error(error);
+    }
+
+    const trip = await response.json();
 
     return trip;
   } catch (error) {
     console.error("There was an error getting your trip.", error);
+
+    throw error;
   }
 }
 
 //ADD user to TRIP
 //next call it in TripDetails
-export async function addUserToTrip(tripId, userId, message) {
+export async function addUserToTrip(tripId, userId, message, token) {
   try {
     const response = await fetch(`${BASE_URL}/trips/${tripId}/users`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         userId,
         message,
       }),
     });
+
+    if (!response.ok) {
+      const error = await response.text();
+      throw new Error(error);
+    }
+
     const result = await response.json();
+
     return result;
   } catch (error) {
     console.error("There was an error adding traveler", error);
+
+    throw error;
   }
 }

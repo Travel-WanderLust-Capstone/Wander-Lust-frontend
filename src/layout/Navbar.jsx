@@ -18,7 +18,7 @@ export default function Navbar() {
       </nav>
       <NavLink to="/explore">Explore</NavLink>
       <NavLink to="/trips/new">Plan a New Trip Today!</NavLink>
-      <NavLink to="/trips/:id">Your Trips</NavLink>
+      <NavLink to="/trips">Your Trips</NavLink>
     </header>
   );
 }

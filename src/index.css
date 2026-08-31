@@ -413,6 +413,34 @@ header {
   font-weight: bold;
 }
 
+/* chat room section */
+
+/* TRIP CHAT BOX */
+.travelers-section {
+  display: flex;
+  flex-direction: column;
+}
+.trip-chat-button {
+  align-self: flex-end;
+
+  background-color: #20a4a6;
+  color: white;
+  border: none;
+
+  padding: 12px 18px;
+
+  border-radius: 5px;
+
+  font-size: 1rem;
+
+  margin-top: 20px;
+
+  cursor: pointer;
+}
+.trip-chat-button:hover {
+  opacity: 0.8;
+}
+
 /* 
    LOADING / EMPTY MESSAGE
 */
@@ -426,4 +454,80 @@ header {
   font-weight: bold;
 
   color: rgb(38, 155, 155);
+}
+
+/* Your Trips */
+/* ========================================
+   YOUR TRIPS PAGE
+   ======================================== */
+
+/* Entire Your Trips section */
+.my-trips-page {
+  padding: 40px;
+}
+
+/* "Your Trips" title */
+.my-trips-page h1 {
+  color: #20a4a6;
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 35px;
+}
+
+/* Holds all of the trip cards */
+.trip-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+/* Individual trip card */
+.trip-card {
+  width: 350px;
+  padding: 25px;
+
+  /* Cream background like Trip Details */
+  background-color: rgba(255, 252, 235, 0.9);
+
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+/* Trip name */
+.trip-card h2 {
+  color: #20a4a6;
+  margin-top: 0;
+  font-size: 2rem;
+}
+
+/* Start and End dates */
+.trip-card p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+/* Trip description */
+.trip-card p:last-of-type {
+  color: #20a4a6;
+  font-weight: bold;
+}
+
+/* View Trip Details link */
+.trip-card a {
+  display: inline-block;
+  margin-top: 10px;
+
+  background-color: #20a4a6;
+  color: white;
+
+  padding: 10px 15px;
+  border-radius: 5px;
+
+  text-decoration: none;
+}
+
+/* Change color when hovering over link */
+.trip-card a:hover {
+  opacity: 0.8;
 }

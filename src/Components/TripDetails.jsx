@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"; //component remember info
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { getTripById, addUserToTrip } from "../api/trips";
 import { getTasksByTripId, createTask, deleteTask } from "../api/tasks";
 import { useAuth } from "../auth/AuthContext";
@@ -22,6 +22,8 @@ function TripDetails() {
   const [taskTitle, setTaskTitle] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [selectedUserId, setSelectedUserId] = useState("");
+
+  const navigate = useNavigate(); //lets javascript send user to another page
 
   //DATE FORMAT
   function formatDate(date) {
@@ -75,7 +77,7 @@ function TripDetails() {
   async function handleAddTraveler(event) {
     event.preventDefault(); //prevent default behavior(refreshing)
 
-    await addUserToTrip(id, userId, message); //sends POST request
+    await addUserToTrip(id, userId, message, token); //sends POST request
 
     const updatedTrip = await getTripById(id); //fetched trip again so new traveler appears
 
@@ -89,7 +91,7 @@ function TripDetails() {
   async function handleCreateTask(event) {
     event.preventDefault();
 
-    await createTask(id, taskTitle, dueDate, selectedUserId);
+    await createTask(id, taskTitle, dueDate, selectedUserId, token);
 
     // Fetch the tasks again so the new task appears
     const updatedTasks = await getTasksByTripId(id);
@@ -109,6 +111,11 @@ function TripDetails() {
     const updatedTasks = await getTasksByTripId(id);
 
     setTasks(updatedTasks || []);
+  }
+
+  //HANDLE CHAT BOX
+  function handleChatClick() {
+    navigate(`/trips/${id}/chat`);
   }
 
   //LOADING trip message
@@ -152,6 +159,13 @@ function TripDetails() {
             </p>
           ))}
         </div>
+        <button
+          className="trip-chat-button"
+          type="button"
+          onClick={handleChatClick}
+        >
+          Go to Trip Chat
+        </button>
       </section>
 
       {/* ADD TRAVELER */}

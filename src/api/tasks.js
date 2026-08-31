@@ -4,7 +4,7 @@ const BASE_URL = "http://localhost:3000"; //address where backend server is runn
 
 //send request to backend to create new task
 //async: waiting for backend server to respond
-export async function createTask(tripId, title, dueDate, userId) {
+export async function createTask(tripId, title, dueDate, userId, token) {
   //fetch(): send http request. contact backend.
   const response = await fetch(`${BASE_URL}/trips/${tripId}/tasks`, {
     //await: wait for backend to respond before continue
@@ -14,6 +14,7 @@ export async function createTask(tripId, title, dueDate, userId) {
     headers: {
       //give server additional info about request
       "Content-Type": "application/json", //tells backend: data im sending is JSON
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
       //contains actual task info that youre sending back
@@ -35,9 +36,14 @@ export async function getTasksByTripId(tripId, token) {
     //contacts backend
     const response = await fetch(`${BASE_URL}/trips/${tripId}/tasks`, {
       headers: {
-        Authorizations: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
+
+    if (!response.ok) {
+      const error = await response.text();
+      throw new Error(error);
+    }
 
     //convert response to javascript
     const tasks = await response.json();

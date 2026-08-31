@@ -8,6 +8,8 @@ import ChatRoom from "./ChatRoom";
 import Explore from "./explore/explore";
 import Location from "./explore/location";
 import Place from "./explore/place";
+import MyTrips from "./Components/MyTrips";
+import ProtectedRoute from "./auth/ProtectedRoute";
 
 export default function App() {
   return (
@@ -20,7 +22,22 @@ export default function App() {
         <Route path="/trips/:tripId/chat" element={<ChatRoom />} />
 
         <Route path="/trips/new" element={<TripForm />} />
-        <Route path="/trips/:id" element={<TripDetails />} />
+        <Route
+          path="/trips/:id"
+          element={
+            <ProtectedRoute>
+              <TripDetails />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/trips"
+          element={
+            <ProtectedRoute>
+              <MyTrips />
+            </ProtectedRoute>
+          }
+        />
 
         <Route path="/explore" element={<Explore />} />
         <Route path="/explore/:id" element={<Location />} />
