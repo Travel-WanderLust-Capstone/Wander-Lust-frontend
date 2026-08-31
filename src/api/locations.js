@@ -1,5 +1,5 @@
 const BASE_URL = import.meta.env.VITE_API_URL;
-
+console.log("BASE URL:", BASE_URL);
 
 export async function getLocations() {
   try {
