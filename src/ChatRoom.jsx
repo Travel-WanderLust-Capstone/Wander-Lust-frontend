@@ -138,7 +138,7 @@ async function handleSend(e) {
             Send
           </button>
         </div>
-        <input
+        <button
           {/* value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
           placeholder="Paste an image link (optional)…"
@@ -148,9 +148,10 @@ async function handleSend(e) {
             marginTop: "0.5rem",
             boxSizing: "border-box",
           }} */}
-        <button
+        
   type="button"
   onClick={() => setImageUrl(dinner)}
+          style={{ marginTop: "0.5rem" }}
 >
   Add Trip Photo 📸
 </button>
