@@ -12,7 +12,7 @@ export default function Place() {
 
   async function getPlaceDetails() {
     try {
-      const response = await fetch(`${BASE}/locations/${id}/${placeId}`);
+      const response = await fetch(`${BASE}/explore/${id}/${placeId}`);
       const result = await response.json();
       setSelectedPlace(result);
     } catch (e) {
@@ -22,9 +22,9 @@ export default function Place() {
 
   async function getLocationDetails() {
     try {
-      const response = await fetch(`${BASE}/${id}`);
+      const response = await fetch(`${BASE}/explore/${id}`);
       const result = await response.json();
-      setLocation(result.location[0]);
+      setLocation(result.location);
     } catch (e) {
       console.error(e);
     }
@@ -38,7 +38,7 @@ export default function Place() {
   if (!selectedPlace || !location) {
     return <p>Loading...</p>;
   }
-  const place = selectedPlace[0];
+  const place = selectedPlace;
 
   return (
     <>
