@@ -1,6 +1,6 @@
 //let REACT frontend talk to backend routes
 
-const BASE_URL = "http://localhost:3000"; //address where backend server is running
+const BASE_URL = import.meta.env.VITE_API; //address where backend server is running
 
 //send request to backend to create new task
 //async: waiting for backend server to respond
