@@ -31,7 +31,7 @@ export default function Location() {
   if (!selectedLocation) {
     return <p>Loading...</p>;
   }
-  const location = selectedLocation.location;
+  const location = selectedLocation.location[0];
 
   const filteredPlaces =
     filter === "all"
