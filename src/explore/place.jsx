@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router";
 
-const BASE = "http://localhost:3000/explore";
+const BASE = "https://wander-lust-oexs.onrender.com";
 
 export default function Place() {
   const { id } = useParams();
