@@ -79,7 +79,7 @@ function TripDetails() {
 
     await addUserToTrip(id, userId, message, token); //sends POST request
 
-    const updatedTrip = await getTripById(id); //fetched trip again so new traveler appears
+    const updatedTrip = await getTripById(id, token); //fetched trip again so new traveler appears
 
     setTrip(updatedTrip);
 
@@ -94,7 +94,7 @@ function TripDetails() {
     await createTask(id, taskTitle, dueDate, selectedUserId, token);
 
     // Fetch the tasks again so the new task appears
-    const updatedTasks = await getTasksByTripId(id);
+    const updatedTasks = await getTasksByTripId(id, token);
 
     setTasks(updatedTasks || []);
 
