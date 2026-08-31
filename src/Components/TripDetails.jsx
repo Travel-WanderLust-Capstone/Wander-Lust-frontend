@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"; //component remember info
 import { useNavigate, useParams } from "react-router";
 import { getTripById, addUserToTrip } from "../api/trips";
 import { getTasksByTripId, createTask, deleteTask } from "../api/tasks";
+import { getUsers } from "../api/users";
 import { useAuth } from "../auth/AuthContext";
 import TaskList from "./TaskList";
 
@@ -16,7 +17,7 @@ function TripDetails() {
   //STATE
   const [trip, setTrip] = useState(null); //store trip. returned by backend. null=haveent loaded trip yet
   const [tasks, setTasks] = useState([]); //stors task. starts as empty array bc no tasks loaded yet
-  //   const [allUsers, setAllUsers] = useState([]);
+    const [allUsers, setAllUsers] = useState([]);
   const [userId, setUserId] = useState("");
   const [message, setMessage] = useState("");
   const [taskTitle, setTaskTitle] = useState("");
@@ -53,6 +54,8 @@ function TripDetails() {
       // Send trip ID AND token
       const taskData = await getTasksByTripId(id, token);
 
+      const userData = await getUsers();
+
       //   const userData = await getUsers();
 
       setTrip(tripData); //backend trip stored in "tripData" then "setTrip(tripiData)" ->
@@ -60,7 +63,7 @@ function TripDetails() {
 
       setTasks(taskData || []);
 
-      //   setAllUsers(userData || []);
+        setAllUsers(userData || []);
     }
 
     //Only try to load protected Trip Details data once the logged-in user's token exists
@@ -181,9 +184,10 @@ function TripDetails() {
               onChange={(event) => setUserId(event.target.value)}
             >
               <option value="">Select a traveler</option>
-              <option value="1">Kylan Gentry</option>
-              <option value="2">Amelie Griffith</option>
-              <option value="3">Lucien Lee</option>
+              {allUsers.map((user) => (
+  <option key={user.id} value={user.id}>
+    {user.name}
+  </option>
             </select>
           </label>
 
