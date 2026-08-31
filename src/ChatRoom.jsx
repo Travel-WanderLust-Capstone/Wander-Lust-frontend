@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useAuth } from "./auth/AuthContext";
 
-const API = import.meta.env.VITE_API;
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const TEAL = "rgb(38, 155, 155)";
 
@@ -14,7 +14,7 @@ export default function ChatRoom() {
   const [imageUrl, setImageUrl] = useState("");
 
   async function loadMessages() {
-    const response = await fetch(`${API}/trips/${tripId}/chat`, {
+    const response = await fetch(`${BASE_URL}/trips/${tripId}/chat`, {
       cache: "no-store",
     });
     const data = await response.json();
@@ -32,7 +32,7 @@ export default function ChatRoom() {
     const headers = { "Content-Type": "application/json" };
     if (token) headers.Authorization = `Bearer ${token}`;
 
-    await fetch(`${API}/trips/${tripId}/chat`, {
+    await fetch(`${BASE_URL}/trips/${tripId}/chat`, {
       method: "POST",
       headers,
       body: JSON.stringify({ body: text, mediaUrl: imageUrl }),
